@@ -7,7 +7,6 @@ class Parser:
 
 	def __init__(self, image):
 		self.image = image.convert('RGB')
-		self.final_image = Image.new('RGBA', image.size)
 		self.pixels = []
 		self.streak = 0
 
@@ -22,10 +21,8 @@ class Parser:
 						self.streak = 0
 						print(r, g, b, x, y)
 						self.pixels.append((x, y))
-						self.final_image.putpixel((x, y), (0, 0, 0, 255))
 					else:
 						self.streak += 1
 				else:
-					self.final_image.putpixel((x, y), (255, 255, 255, 255))
 					if self.streak > 0:
 						self.streak -= 1
